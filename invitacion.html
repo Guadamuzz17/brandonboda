@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cielo & Brandon</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Allison&family=Great+Vibes&family=Herr+Von+Muellerhoff&family=Hurricane&family=Ms+Madi&family=Sacramento&family=Yellowtail&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Kaisei+HarunoUmi&family=Kalnia:wght@100..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Nanum+Myeongjo&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    
+    <style>
+       :root {
+    --primary-100: #D1CFC9;  /* Ivory */
+    --primary-200: #BDC4D4;  /* Dusty Blue */
+    --primary-500: #52677D;  /* Midnight Blue */
+    --primary-600: #1C2E4A;  /* Deep Navy */
+    --primary-900: #0F1A2B;  /* Dark Navy */
+    --accent-1: #F5F5DC;     /* Buttercream */
+}
+
+.font-handwriting1 { font-family: 'Great Vibes', cursive; }
+.font-serif1 { font-family: 'Playfair Display', serif; }
+.font-serif4 { font-family: 'Cormorant Garamond', serif; }
+
+.bg-primary-100 { background-color: var(--primary-100); }
+.bg-primary-200 { background-color: var(--primary-200); }
+.bg-primary-500 { background-color: var(--primary-500); }
+.bg-primary-600 { background-color: var(--primary-600); }
+.bg-primary-900 { background-color: var(--primary-900); }
+.bg-accent-1 { background-color: var(--accent-1); }
+
+.text-primary-100 { color: var(--primary-100); }
+.text-primary-200 { color: var(--primary-200); }
+.text-primary-500 { color: var(--primary-500); }
+.text-primary-600 { color: var(--primary-600); }
+.text-primary-900 { color: var(--primary-900); }
+.text-accent-1 { color: var(--accent-1); }
+
+.border-primary-100 { border-color: var(--primary-100); }
+.border-primary-200 { border-color: var(--primary-200); }
+.border-primary-500 { border-color: var(--primary-500); }
+.border-primary-600 { border-color: var(--primary-600); }
+.border-primary-900 { border-color: var(--primary-900); }
+.border-accent-1 { border-color: var(--accent-1); }
+
+/* Animations */
+@keyframes slide-in-bottom {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-in-left {
+    0% { transform: translateX(-50px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes scale-in-center {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes menuIn {
+    0% { opacity: 0; transform: scale(0.9) translateY(-40px);}
+    100% { opacity: 1; transform: scale(1) translateY(0);}
+}
+
+.animate-slide-in-bottom { animation: slide-in-bottom 1.3s ease-out; }
+.animate-slide-in-left { animation: slide-in-left 1.3s ease-out; }
+.animate-scale-in-center { animation: scale-in-center 1.3s ease-out; }
+.animate-fade-in { animation: fade-in 1s ease-out; }
+.animate-menu-in {
+    animation: menuIn 0.5s cubic-bezier(.77,0,.18,1);
+}
+
+/* Hero section styles */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('img/1.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: var(--primary-100);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+/* Countdown styles */
+.countdown-box {
+    background: rgba(255,255,255,0.25); /* Blanco translúcido */
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--primary-100);
+    color: #070707;
+}
+
+.countdown-bg {
+    background: url('img/4.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Menu hamburger */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    background: rgba(210, 207, 201, 0.9); /* Semi-transparent Ivory */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    color: var(--primary-600);
+    transition: transform 0.2s;
+}
+
+.menu-toggle:active {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 26, 43, 0.95); /* Semi-transparent Dark Navy */
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu-overlay.active {
+    display: flex;
+}
+
+.menu-item {
+    color: var(--primary-100);
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.2s;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.menu-item:hover {
+    color: var(--primary-200);
+}
+
+.menu-item:active {
+    color: var(--primary-500);
+    transform: scale(1.1);
+}
+
+/* Gallery styles */
+.gallery-main {
+    max-height: 400px;
+    object-fit: cover;
+    border: 3px solid var(--primary-200);
+}
+
+.gallery-thumbnail {
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 0.7;
+    border: 2px solid var(--primary-100);
+}
+
+.gallery-thumbnail:hover,
+.gallery-thumbnail.selected {
+    opacity: 1;
+    transform: scale(1.05);
+    border-color: var(--primary-500);
+}
+
+/* Audio button */
+.audio-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(28, 46, 74, 0.7); /* Semi-transparent Deep Navy */
+    color: var(--primary-100);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.audio-btn:hover {
+    background: rgba(15, 26, 43, 0.9); /* Dark Navy */
+    transform: scale(1.1);
+}
+
+/* Scroll animations */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.invitation-bg {
+    background: linear-gradient(rgba(82,103,125,0.5), rgba(82,103,125,0.5)), url('img/.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.parents-bg {
+    background: linear-gradient(rgba(29,46,74,0.6), rgba(29,46,74,0.6)), url('/img/3.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.location-bg {
+    background: linear-gradient(rgba(28,46,74,0.5), rgba(28,46,74,0.5)), url('/img/ubi.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.gifts-bg {
+    background: linear-gradient(rgba(82,103,125,0.5), rgba(82,103,125,0.5)), url('img/8.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.dresscode-bg {
+    background: linear-gradient(rgba(28,46,74,0.5), rgba(28,46,74,0.5)), url('/img/traje.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.hashtag-bg {
+    background: linear-gradient(rgba(82,103,125,0.5), rgba(82,103,125,0.5)), url('/img/5.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.wishes-bg {
+    background: linear-gradient(rgba(29,46,74,0.6), rgba(29,46,74,0.6)), url('img/11.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.contact-bg {
+    background: linear-gradient(rgba(28,46,74,0.5), rgba(28,46,74,0.5)), url('/img/1.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.final-bg {
+    background: linear-gradient(rgba(82,103,125,0.5), rgba(82,103,125,0.5)), url('img/13.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.itinerary-bg {
+    background: linear-gradient(rgba(28,46,74,0.5), rgba(28,46,74,0.5)), url('img/14.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+#carousel-items > div {
+    display: none;
+}
+#carousel-items > div.active {
+    display: flex;
+}
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- Menu Toggle -->
+    <div class="menu-toggle animate-bounce" onclick="toggleMenu()">
+        <i class="fas fa-bars text-gray-700"></i>
+    </div>
+
+   <!-- Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay">
+    <div class="text-center animate-menu-in">
+        <a href="#inicio" class="menu-item block" onclick="closeMenu()">Inicio</a>
+        <a href="#parents" class="menu-item block" onclick="closeMenu()">Padres</a>
+        <a href="#itinerario" class="menu-item block" onclick="closeMenu()">Itinerario</a>
+        <a href="#ubicaciones" class="menu-item block" onclick="closeMenu()">Ubicación</a>
+        <a href="#mesa-regalos" class="menu-item block" onclick="closeMenu()">Regalos</a>
+        <a href="#vestimenta" class="menu-item block" onclick="closeMenu()">Código de Vestimenta</a>
+    </div>
+</div>
+
+
+    <!-- Audio Button -->
+    <button class="audio-btn" onclick="toggleAudio()">
+        <i class="fas fa-volume-up" id="audioIcon"></i>
+    </button>
+    <audio id="backgroundAudio" loop>
+        <source src="/musica/cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section min-h-screen flex items-center justify-center text-center">
+        <div class="scroll-animate">
+            <h1 class="hero-title mb-4">Melany & Brandon</h1>
+            <h2 class="hero-title text-3xl mb-8">17.10.2025</h2>
+            <div class="text-white text-lg mb-8 px-4">
+            </div>
+        </div>
+    </section>
+
+    <!-- División visual entre Hero y Countdown -->
+    <section class="bg-primary-100 py-8">
+        <div class="container mx-auto px-4 text-center scroll-animate">
+            <h4 class="text-lg text-black font-serif1 mb-2">Proverbios 18:22</h4>
+            <h3 class="text-xl text-black mb-2">"El que halla esposa halla el bien, y alcanza el favor de Jehová."</h3>
+            <h3 class="text-xl text-black">👰🏻‍♀️🤵🏻</i></h3>
+        </div>
+    </section>
+
+    
+
+    <!-- Countdown Section -->
+    <section class="countdown-bg min-h-screen py-32 text-center flex items-center justify-center">
+        <div class="container mx-auto px-4 scroll-animate">
+            <div class="inline-block bg-white/50 backdrop-blur-sm rounded-lg p-6 md:p-8 shadow-lg border border-primary-200 mb-8">
+                <h2 class="text-4xl font-serif1 text-primary-900 mb-4">¡Nos casamos!</h2>
+                <h3 class="text-2xl text-primary-900 mb-0">Viernes 17 de Octubre 2025</h3>
+            </div>
+            <div class="flex justify-center gap-4 md:gap-8 animate-fade-in mb-8">
+                <div class="countdown-box rounded-lg px-6 py-4 flex flex-col items-center">
+                    <span id="days" class="text-4xl font-bold">00</span>
+                    <span class="text-sm mt-1">Días</span>
+                </div>
+                <div class="countdown-box rounded-lg px-6 py-4 flex flex-col items-center">
+                    <span id="hours" class="text-4xl font-bold">00</span>
+                    <span class="text-sm mt-1">Horas</span>
+                </div>
+                <div class="countdown-box rounded-lg px-6 py-4 flex flex-col items-center">
+                    <span id="minutes" class="text-4xl font-bold">00</span>
+                    <span class="text-sm mt-1">Minutos</span>
+                </div>
+                <div class="countdown-box rounded-lg px-6 py-4 flex flex-col items-center">
+                    <span id="seconds" class="text-4xl font-bold">00</span>
+                    <span class="text-sm mt-1">Segundos</span>
+                </div>
+            </div>
+            <button id="addToCalendarBtn" class="bg-white text-primary-900 px-6 py-3 rounded-full hover:bg-primary-100 transition-all">
+                <i class="fas fa-calendar-plus mr-2"></i>
+                Agregar a Calendario
+            </button>
+        </div>
+    </section>
+
+    <!-- Invitation Section -->
+    <section class="invitation-bg bg-primary-500 py-16 text-center">
+        <div class="container mx-auto px-4 scroll-animate">
+            <h2 class="text-4xl font-serif1 text-primary-900 mb-4">¡Es un placer Invitarlos!</h2>
+          
+        </div>
+    </section>
+
+    <!-- Parents Section -->
+<section class="parents-bg bg-primary-900 py-16 relative overflow-hidden">
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <!-- Title with animation -->
+        <div class="animate-scale-in-center">
+            <h1 class="px-10 sm:py-4 text-4xl md:text-5xl text-accent-1 font-handwriting1">Con la bendición de nuestros Padres</h1>
+        </div>
+        
+        <!-- Content with animation -->
+        <div class="animate-slide-in-bottom mt-8 max-w-2xl mx-auto">
+            <!-- Divider line -->
+            <div class="w-16 h-0.5 mx-auto my-4 bg-accent-1"></div>
+            
+            <!-- Bride's parents -->
+            <div class="mb-8">
+                <h4 class="text-primary-100 font-serif4 text-xl italic tracking-wider">Padres de la novia</h4>
+                <div class="mt-4 space-y-2">
+                    <h5 class="text-accent-1 font-serif1 text-xl">Victor Pereira</h5>
+                    <h5 class="text-accent-1 font-serif1 text-xl">Megly Veliz</h5>
+                </div>
+            </div>
+            
+            <!-- Center divider -->
+            <div class="flex items-center justify-center my-6">
+                <div class="w-0.5 h-16 bg-accent-1"></div>
+            </div>
+            
+            <!-- Groom's parents -->
+            <div class="mt-8">
+                <h4 class="text-primary-100 font-serif4 text-xl italic tracking-wider">Padres del novio</h4>
+                <div class="mt-4 space-y-2">
+                    <h5 class="text-accent-1 font-serif1 text-xl">Ruben Díaz</h5>
+                    <h5 class="text-accent-1 font-serif1 text-xl">Silvia Pinto</h5>
+                </div>
+            </div>
+            
+            <!-- Bottom divider -->
+            <div class="w-16 h-0.5 mx-auto my-8 bg-accent-1"></div>
+        </div>
+    </div>
+    
+    <!-- Overlay for better readability -->
+    <div class="absolute inset-0 bg-primary-900 opacity-40 z-0"></div>
+
+</section>
+
+    <!-- Itinerary Section -->
+    <section class="itinerary-bg min-h-[400px] flex items-center justify-center relative">
+      <div class="absolute inset-0 bg-black opacity-30"></div>
+      <div class="relative w-full sm:w-1/2 mx-auto py-5 sm:p-10 z-10">
+        <h1 class="text-3xl font-serif1 text-white text-center mb-8 animate-slide-in-left" style="text-shadow: 1px 1px black;">Itinerario</h1>
+        <div id="carousel" class="flex flex-col items-center">
+          <div id="carousel-items" class="w-full" style="overflow:hidden;">
+            <!-- Slide 1 -->
+            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center text-center p-4" style="min-width:100%;">
+              <lord-icon src="https://cdn.lordicon.com/rlngnytn.json" trigger="loop" colors="primary:#fff,secondary:#fff" style="width: 120px; height: 120px;"></lord-icon>
+              <h4 class="text-xl text-white py-2">Recepción</h4>
+              <h4 class="text-lg text-white py-1">Horario 4:30 PM</h4>
+              <h4 class="text-lg text-white py-1">Casa San Juan Chamelco</h4>
+            </div>
+            <!-- Slide 2 -->
+            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center text-center p-4" style="min-width:100%;">
+                <lord-icon src="https://cdn.lordicon.com/dlnpcmpd.json" trigger="loop" colors="primary:#fff,secondary:#fff" style="width: 120px; height: 120px;"></lord-icon>
+                <h4 class="text-xl text-white py-2">Ceremonia</h4>
+              <h4 class="text-lg text-white py-1">Horario 5:30 PM</h4>
+            </div>
+          </div>
+          <div class="flex justify-center items-center mt-4">
+            <button id="prevBtn" class="bg-primary-600 h-8 w-8 flex justify-center items-center rounded-full mr-2">
+              <i class="fas fa-chevron-left text-primary-200"></i>
+            </button>
+            <button id="nextBtn" class="bg-primary-600 h-8 w-8 flex justify-center items-center rounded-full ml-2">
+              <i class="fas fa-chevron-right text-primary-200"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="ubicaciones" class="location-bg bg-primary-600 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-serif1 text-primary-200 mb-12 scroll-animate">Ubicación</h2>
+            
+            <div class="max-w-md mx-auto scroll-animate">
+                <div class="mb-4">
+                    <h3 class="text-2xl text-primary-200 mb-2">Ceremonia y Recepción</h3>
+                </div>
+                
+                <div class="bg-white rounded-full w-48 h-48 mx-auto mb-4 overflow-hidden shadow-lg">
+                    <img src="/img/iglesia.jpg" 
+                         alt="Iglesia" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="text-primary-200">
+                    <h3 class="text-xl mb-2">Casa San Juan</h3>
+                    <p class="mb-4">Caserio Nueva Concepcion, San Juan Chamelco, Guatemala</p>
+                    
+                    <button class="bg-primary-500 text-primary-900 px-6 py-2 rounded-lg hover:bg-primary-900 hover:text-primary-100 transition-all mb-4"
+                            onclick="window.open('https://maps.app.goo.gl/G4Yg15DRktvS31Yc8', '_blank')">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        Ver ubicación
+                    </button>
+                    <div class="w-full flex justify-center mb-4">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.2123356192874!2d-90.3233242!3d15.4190869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858a406e08bbdd53%3A0x37e8df5e0431ae65!2sCasa%20de%20San%20Juan!5e0!3m2!1ses!2sgt!4v1755038775379!5m2!1ses!2sgt" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mesa de Regalos Section -->
+    <section id="mesa-regalos" class="gifts-bg bg-primary-500 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-2xl mx-auto">
+                <div class="scroll-animate mb-8">
+                    <p class="text-lg text-primary-900">¡Que nos acompañes es lo más importante! Y si está en tu disposición realizar una muestra de cariño, ¡estaremos muy agradecidos!</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-70 rounded-lg p-8 scroll-animate">
+                    <h2 class="text-3xl font-serif1 text-primary-900 mb-8">Regalos</h2>
+                    
+                    <!-- Lluvia de Sobres -->
+                    <div class="mb-8">
+                        <h3 class="text-2xl text-primary-900 mb-4">Lluvia de Sobres</h3>
+                        <i class="fas fa-envelope text-6xl text-primary-600 mb-4"></i>
+                        <p class="text-primary-900 mb-6">"La lluvia de sobres, es la tradición de regalar dinero en efectivo en un sobre el día del evento"</p>
+                        
+                        <div class="border-b-2 border-primary-200 mb-6"></div>
+                        
+                      
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Código de Vestimenta -->
+    <section id="vestimenta" class="dresscode-bg bg-primary-600 py-16">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-serif1 text-primary-200 mb-8 scroll-animate">Código de Vestimenta</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div class="scroll-animate">
+                <div class="w-48 h-48 mx-auto mb-4">
+                    <img src="/img/hombre.jpg" 
+                         alt="Vestimenta Hombre" class="w-full h-full object-cover rounded-full border-4 border-white">
+                </div>
+            </div>
+            <div class="scroll-animate">
+                <div class="w-48 h-48 mx-auto mb-4">
+                    <img src="/img/mujer.jpg" 
+                         alt="Vestimenta Mujer" class="w-full h-full object-cover rounded-full border-4 border-white">
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-animate">
+            <h3 class="text-2xl text-primary-200 mb-4">Etiqueta Rigurosa</h3>
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl text-primary-200 mb-2">Hombres:</h4>
+                    <p class="text-primary-200">Traje/Esmoquin</p>
+                </div>
+                <div>
+                    <h4 class="text-xl text-primary-200 mb-2">Mujeres:</h4>
+                    <p class="text-primary-200">Vestido Largo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- No Niños -->
+    <section class="bg-primary-100 py-8">
+        <div class="container mx-auto px-4 text-center scroll-animate">
+            <h4 class="text-lg text-black font-serif1 mb-2">
+                Estamos muy emocionados de compartir este día tan especial con todos ustedes. Nuestro mayor deseo es que disfruten, rían, bailen y creen recuerdos inolvidables junto a nosotros.
+            </h4>
+        </div>
+    </section>
+
+    <!-- Hashtag Section -->
+    <section class="hashtag-bg bg-primary-500 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-md mx-auto bg-white bg-opacity-70 rounded-lg p-8 scroll-animate">
+                <h3 class="text-4xl font-handwriting1 text-primary-900 mb-6">#Melany&Brandon</h3>
+                <lord-icon src="https://cdn.lordicon.com/vixtkkbk.json" trigger="loop" colors="primary:#000,secondary:#000" class="text-center" style="width: 150px; height: 150px;"></lord-icon>
+                <p class="text-primary-900">Comparte con nosotros todas tus fotografías del evento, usando el siguiente #Cielo&BrandonWedding en todas tus publicaciones de Facebook e Instagram</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buenos Deseos Section -->
+    <section class="wishes-bg bg-primary-900 py-16">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-serif1 text-primary-500 mb-8 scroll-animate">Confirma tu asistencia</h2>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVBg9XfS3QEwxBS-pVqPvqdIDDbW7M-zr0SLZDnhNaGLGC1w/viewform" 
+           target="_blank" 
+           class="bg-primary-500 text-primary-900 px-6 py-3 rounded-xl hover:shadow-2xl transition-all inline-block">
+            Oprime para llenar el formulario de asistencia
+        </a>
+    </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-bg bg-primary-600 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-serif1 text-primary-200 text-center mb-12 scroll-animate">Contacto</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="text-center scroll-animate">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-primary-500">
+                        <img src="/img/Novios.jpg" alt="Novia" class="w-full h-full object-cover">
+                    </div>
+                    <a href="https://wa.link/9m41oj" 
+                       target="_blank" 
+                       class="inline-block bg-primary-500 text-primary-900 px-6 py-3 rounded-lg hover:bg-primary-900 hover:text-primary-100 transition-all">
+                        <i class="fab fa-whatsapp mr-2"></i>Novia
+                    </a>
+                </div>
+                
+                <div class="text-center scroll-animate">
+                    <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-primary-500">
+                        <img src="/img/Novios.jpg" alt="Novio" class="w-full h-full object-cover">
+                    </div>
+                    <a href="https://wa.link/oud6l4" 
+                       target="_blank" 
+                       class="inline-block bg-primary-500 text-primary-900 px-6 py-3 rounded-lg hover:bg-primary-900 hover:text-primary-100 transition-all">
+                        <i class="fab fa-whatsapp mr-2"></i>Novio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Message -->
+    <section class="final-bg bg-primary-500 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto scroll-animate">
+                <h3 class="text-2xl font-serif1 text-primary-900 leading-relaxed">
+                    No solo no hubiéramos sido nada sin ustedes sino con toda la gente que estuvo a nuestro alrededor desde el comienzo. Algunos siguen hasta hoy.<br>
+                    ¡Gracias a todos! 🖤
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer class="bg-primary-900 py-8">
+    <div class="container mx-auto px-4 text-center">
+        <div class="flex justify-center items-center gap-6 mb-4">
+            <a href="https://wa.link/9m41oj" target="_blank" class="text-3xl text-primary-100 hover:text-primary-500 transition-colors">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.https://www.facebook.com/SMARTZONE.GT1" target="_blank" class="text-3xl text-primary-100 hover:text-primary-500 transition-colors">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://https://www.instagram.com/smart.zonegt/" target="_blank" class="text-3xl text-primary-100 hover:text-primary-500 transition-colors">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <div class="text-sm text-primary-100">
+            Copyright © 2025 
+            <a href="https://www.creative-tim.com?ref=ns-footer-admin" class="hover:text-primary-500 transition-colors">
+                Melany & Brandon | Wedding Invitation
+            </a>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Menu functionality
+        function toggleMenu() {
+            const menu = document.getElementById('menuOverlay');
+            menu.classList.toggle('active');
+            const menuContent = menu.querySelector('.text-center');
+            if (menu.classList.contains('active')) {
+                menuContent.classList.remove('animate-menu-in');
+                void menuContent.offsetWidth; // trigger reflow
+                menuContent.classList.add('animate-menu-in');
+            }
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('menuOverlay');
+            menu.classList.remove('active');
+        }
+
+        // Audio functionality
+        let isPlaying = false;
+        const audio = document.getElementById('backgroundAudio');
+        const audioIcon = document.getElementById('audioIcon');
+
+        // Reproducir automáticamente al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intentar reproducir la música al abrir la invitación
+            audio.play().then(() => {
+                isPlaying = true;
+                audioIcon.className = 'fas fa-volume-up';
+            }).catch(() => {
+                // Si el navegador bloquea el autoplay, el usuario puede iniciar con el botón
+                isPlaying = false;
+                audioIcon.className = 'fas fa-volume-mute';
+            });
+
+            // ...resto de tu código de inicialización...
+            // (No borres el resto de tu código aquí)
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            handleScrollAnimations();
+            window.addEventListener('scroll', handleScrollAnimations);
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    smoothScroll(target);
+                    closeMenu();
+                });
+            });
+            document.getElementById('menuOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeMenu();
+                }
+            });
+
+            const carousel = document.getElementById('carousel-items');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+            const slides = carousel.children;
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                for (let i = 0; i < totalSlides; i++) {
+                    slides[i].classList.remove('active');
+                }
+                slides[index].classList.add('active');
+            }
+
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                showSlide(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                showSlide(currentIndex);
+            });
+
+            showSlide(currentIndex);
+        });
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    audioIcon.className = 'fas fa-volume-up';
+                }).catch(() => {});
+            } else {
+                audio.pause();
+                isPlaying = false;
+                audioIcon.className = 'fas fa-volume-mute';
+            }
+        }
+
+        function updateCountdown() {
+            const targetDate = new Date("2025-10-17T00:00:00-05:00").getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Gallery functionality
+        function changeMainImage(thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            const allThumbnails = document.querySelectorAll('.gallery-thumbnail');
+            
+            // Remove selected class from all thumbnails
+            allThumbnails.forEach(thumb => thumb.classList.remove('selected'));
+            
+            // Add selected class to clicked thumbnail
+            thumbnail.classList.add('selected');
+            
+            // Change main image source
+            mainImage.src = thumbnail.src.replace('100/100', '400/400');
+        }
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.scroll-animate');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Smooth scroll for navigation links
+        function smoothScroll(target) {
+            const element = document.querySelector(target);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update countdown every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Handle scroll animations
+            handleScrollAnimations();
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            // Add smooth scrolling to navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    smoothScroll(target);
+                    closeMenu();
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.getElementById('menuOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeMenu();
+                }
+            });
+
+            const carousel = document.getElementById('carousel-items');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+            const slides = carousel.children;
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                for (let i = 0; i < totalSlides; i++) {
+                    slides[i].classList.remove('active');
+                }
+                slides[index].classList.add('active');
+            }
+
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                showSlide(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                showSlide(currentIndex);
+            });
+
+            showSlide(currentIndex);
+        });
+
+        // Handle escape key to close menu
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+
+        // Agregar a Calendario
+        document.getElementById('addToCalendarBtn').addEventListener('click', function() {
+            // Datos del evento
+            const title = 'Boda de Melany & Brandon';
+            const description = '¡Acompáñanos a celebrar nuestra boda! Viernes 17 de Octubre 2025, Casa San Juan Chamelco, Guatemala';
+            const location = 'Casa San Juan, Caserio Nueva Concepcion, San Juan Chamelco, Guatemala';
+            const startDate = '20251017T163000'; // 17 Oct 2025, 16:30 hora local
+            const endDate = '20251017T210000';   // 17 Oct 2025, 21:00 hora local
+
+            // Google Calendar URL (Android)
+            const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(description)}&location=${encodeURIComponent(location)}`;
+
+            // ICS file (iOS y universal)
+            const icsContent = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'BEGIN:VEVENT',
+                `DTSTART:${startDate}`,
+                `DTEND:${endDate}`,
+                `SUMMARY:${title}`,
+                `DESCRIPTION:${description}`,
+                `LOCATION:${location}`,
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\r\n');
+
+            // Detectar dispositivo
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isAndroid = /Android/.test(navigator.userAgent);
+
+            if (isAndroid) {
+                window.open(googleUrl, '_blank');
+            } else if (isIOS) {
+                // Descargar archivo ICS
+                const blob = new Blob([icsContent], { type: 'text/calendar' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Boda-Melany-Brandon.ics';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } else {
+                // Mostrar opciones para ambos
+                if (confirm('¿Usas Google Calendar? Presiona OK para abrir Google Calendar, Cancelar para descargar el evento (.ics)')) {
+                    window.open(googleUrl, '_blank');
+                } else {
+                    const blob = new Blob([icsContent], { type: 'text/calendar' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Boda-Melany-Brandon.ics';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
