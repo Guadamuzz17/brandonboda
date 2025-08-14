@@ -335,6 +335,21 @@
     }
 }
 
+/* Asegura que no haya scroll lateral en móviles */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden !important;
+        width: 100vw;
+        position: relative;
+    }
+    .menu-toggle, .audio-btn {
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: 20px;
+    }
+}
+
 .parallax-bg-mobile {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/1.jpeg');
     background-size: cover;
@@ -367,26 +382,37 @@
    <!-- Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay">
     <div class="text-center animate-menu-in">
-        <a href="#inicio" class="menu-item block" onclick="closeMenu()">Inicio</a>
-        <a href="#parents" class="menu-item block" onclick="closeMenu()">Padres</a>
-        <a href="#itinerario" class="menu-item block" onclick="closeMenu()">Itinerario</a>
-        <a href="#ubicaciones" class="menu-item block" onclick="closeMenu()">Ubicación</a>
-        <a href="#mesa-regalos" class="menu-item block" onclick="closeMenu()">Regalos</a>
-        <a href="#vestimenta" class="menu-item block" onclick="closeMenu()">Código de Vestimenta</a>
+        <a href="#inicio" class="menu-item block" onclick="closeMenu()">
+            <i class="fas fa-home mr-2"></i>Inicio
+        </a>
+        <a href="#parents" class="menu-item block" onclick="closeMenu()">
+            <i class="fas fa-users mr-2"></i>Padres
+        </a>
+        <a href="#itinerario" class="menu-item block" onclick="closeMenu()">
+            <i class="fas fa-calendar-alt mr-2"></i>Itinerario
+        </a>
+        <a href="#ubicaciones" class="menu-item block" onclick="closeMenu()">
+            <i class="fas fa-map-marker-alt mr-2"></i>Ubicación
+        </a>
+        <a href="#mesa-regalos" class="menu-item block" onclick="closeMenu()">
+            <i class="fas fa-gift mr-2"></i>Regalos
+        </a>
+        <a href="#vestimenta" class="menu-item block" onclick="closeMenu()">
+            <i class="fas fa-tshirt mr-2"></i>Código de Vestimenta
+        </a>
     </div>
 </div>
 
-
-    <!-- Audio Button -->
-    <button class="audio-btn" onclick="toggleAudio()">
-        <i class="fas fa-volume-up" id="audioIcon"></i>
+     <!-- Audio Button -->
+     <button class="audio-btn" onclick="toggleAudio()">
+        <i class="fas fa-music text-2xl animate-pulse" id="audioIcon"></i>
     </button>
     <audio id="backgroundAudio" loop>
         <source src="/musica/cancion.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Hero Section -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+    <section id="inicio" class="hero-section relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <div class="absolute inset-0 z-0 parallax-bg-mobile"></div>
         <div class="relative z-10 scroll-animate">
             <h1 class="hero-title mb-4">Melany & Brandon</h1>
@@ -401,7 +427,7 @@
         <div class="container mx-auto px-4 text-center scroll-animate">
             <h4 class="text-lg text-black font-serif1 mb-2">Proverbios 18:22</h4>
             <h3 class="text-xl text-black mb-2">"El que halla esposa halla el bien, y alcanza el favor de Jehová."</h3>
-            <h3 class="text-xl text-black">👰🏻‍♀️🤵🏻</i></h3>
+            <h3 class="text-xl text-black"></i></h3>
         </div>
     </section>
 
@@ -756,18 +782,40 @@
                 audioIcon.className = 'fas fa-volume-mute';
             });
 
-            // Animación táctil para móviles
+            // Animación táctil para móviles SOLO en imágenes de fondo, NO en círculos
             document.querySelectorAll('.animatable-img').forEach(function(img) {
-                img.addEventListener('touchstart', function() {
-                    img.classList.remove('animate'); // Reinicia si ya tiene
-                    void img.offsetWidth; // Trigger reflow
-                    img.classList.add('animate');
-                });
-                // Opcional: para permitir repetir la animación en cada toque
-                img.addEventListener('animationend', function() {
-                    img.classList.remove('animate');
-                });
+                // Si la imagen NO tiene la clase 'rounded-full', aplica la animación táctil
+                if (!img.classList.contains('rounded-full')) {
+                    img.addEventListener('touchstart', function() {
+                        img.classList.remove('animate'); // Reinicia si ya tiene
+                        void img.offsetWidth; // Trigger reflow
+                        img.classList.add('animate');
+                    });
+                    img.addEventListener('animationend', function() {
+                        img.classList.remove('animate');
+                    });
+                }
             });
+
+            // Animación táctil para la imagen de fondo en móviles
+            const parallaxBg = document.querySelector('.parallax-bg-mobile');
+            if (parallaxBg) {
+                let startY = 0;
+                parallaxBg.addEventListener('touchstart', function(e) {
+                    if (e.touches.length === 1) {
+                        startY = e.touches[0].clientY;
+                    }
+                });
+                parallaxBg.addEventListener('touchmove', function(e) {
+                    if (e.touches.length === 1) {
+                        const deltaY = e.touches[0].clientY - startY;
+                        parallaxBg.style.backgroundPosition = `center ${deltaY * 0.5}px`;
+                    }
+                });
+                parallaxBg.addEventListener('touchend', function() {
+                    parallaxBg.style.backgroundPosition = 'center 0px';
+                });
+            }
 
             // ...resto de tu código de inicialización...
             // (No borres el resto de tu código aquí)
