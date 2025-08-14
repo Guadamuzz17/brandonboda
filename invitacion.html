@@ -27,6 +27,13 @@
     --accent-1: #F5F5DC;     /* Buttercream */
 }
 
+html, body {
+  overflow-x: hidden !important;
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+}
+
 .font-handwriting1 { font-family: 'Great Vibes', cursive; }
 .font-serif1 { font-family: 'Playfair Display', serif; }
 .font-serif4 { font-family: 'Cormorant Garamond', serif; }
@@ -335,21 +342,6 @@
     }
 }
 
-/* Asegura que no haya scroll lateral en móviles */
-@media (max-width: 768px) {
-    html, body {
-        overflow-x: hidden !important;
-        width: 100vw;
-        position: relative;
-    }
-    .menu-toggle, .audio-btn {
-        left: 0;
-        right: 0;
-        margin-left: auto;
-        margin-right: 20px;
-    }
-}
-
 .parallax-bg-mobile {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/1.jpeg');
     background-size: cover;
@@ -382,37 +374,26 @@
    <!-- Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay">
     <div class="text-center animate-menu-in">
-        <a href="#inicio" class="menu-item block" onclick="closeMenu()">
-            <i class="fas fa-home mr-2"></i>Inicio
-        </a>
-        <a href="#parents" class="menu-item block" onclick="closeMenu()">
-            <i class="fas fa-users mr-2"></i>Padres
-        </a>
-        <a href="#itinerario" class="menu-item block" onclick="closeMenu()">
-            <i class="fas fa-calendar-alt mr-2"></i>Itinerario
-        </a>
-        <a href="#ubicaciones" class="menu-item block" onclick="closeMenu()">
-            <i class="fas fa-map-marker-alt mr-2"></i>Ubicación
-        </a>
-        <a href="#mesa-regalos" class="menu-item block" onclick="closeMenu()">
-            <i class="fas fa-gift mr-2"></i>Regalos
-        </a>
-        <a href="#vestimenta" class="menu-item block" onclick="closeMenu()">
-            <i class="fas fa-tshirt mr-2"></i>Código de Vestimenta
-        </a>
+        <a href="#inicio" class="menu-item block" onclick="closeMenu()">Inicio</a>
+        <a href="#parents" class="menu-item block" onclick="closeMenu()">Padres</a>
+        <a href="#itinerario" class="menu-item block" onclick="closeMenu()">Itinerario</a>
+        <a href="#ubicaciones" class="menu-item block" onclick="closeMenu()">Ubicación</a>
+        <a href="#mesa-regalos" class="menu-item block" onclick="closeMenu()">Regalos</a>
+        <a href="#vestimenta" class="menu-item block" onclick="closeMenu()">Código de Vestimenta</a>
     </div>
 </div>
 
-     <!-- Audio Button -->
-     <button class="audio-btn" onclick="toggleAudio()">
-        <i class="fas fa-music text-2xl animate-pulse" id="audioIcon"></i>
+
+    <!-- Audio Button -->
+    <button class="audio-btn" onclick="toggleAudio()">
+        <i class="fas fa-volume-up" id="audioIcon"></i>
     </button>
     <audio id="backgroundAudio" loop>
         <source src="/musica/cancion.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero-section relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <div class="absolute inset-0 z-0 parallax-bg-mobile"></div>
         <div class="relative z-10 scroll-animate">
             <h1 class="hero-title mb-4">Melany & Brandon</h1>
@@ -427,7 +408,7 @@
         <div class="container mx-auto px-4 text-center scroll-animate">
             <h4 class="text-lg text-black font-serif1 mb-2">Proverbios 18:22</h4>
             <h3 class="text-xl text-black mb-2">"El que halla esposa halla el bien, y alcanza el favor de Jehová."</h3>
-            <h3 class="text-xl text-black"></i></h3>
+            <h3 class="text-xl text-black">👰🏻‍♀️🤵🏻</i></h3>
         </div>
     </section>
 
@@ -530,14 +511,14 @@
             <div class="w-full flex-shrink-0 flex flex-col items-center justify-center text-center p-4" style="min-width:100%;">
               <lord-icon src="https://cdn.lordicon.com/rlngnytn.json" trigger="loop" colors="primary:#fff,secondary:#fff" style="width: 120px; height: 120px;"></lord-icon>
               <h4 class="text-xl text-white py-2">Recepción</h4>
-              <h4 class="text-lg text-white py-1">Horario 4:30 PM</h4>
+              <h4 class="text-lg text-white py-1">Horario 5:30 PM</h4>
               <h4 class="text-lg text-white py-1">Casa San Juan Chamelco</h4>
             </div>
             <!-- Slide 2 -->
             <div class="w-full flex-shrink-0 flex flex-col items-center justify-center text-center p-4" style="min-width:100%;">
                 <lord-icon src="https://cdn.lordicon.com/dlnpcmpd.json" trigger="loop" colors="primary:#fff,secondary:#fff" style="width: 120px; height: 120px;"></lord-icon>
                 <h4 class="text-xl text-white py-2">Ceremonia</h4>
-              <h4 class="text-lg text-white py-1">Horario 5:30 PM</h4>
+              <h4 class="text-lg text-white py-1">Horario 4:30 PM</h4>
             </div>
           </div>
           <div class="flex justify-center items-center mt-4">
@@ -598,11 +579,14 @@
                     <!-- Lluvia de Sobres -->
                     <div class="mb-8">
                         <h3 class="text-2xl text-primary-900 mb-4">Lluvia de Sobres</h3>
-                        <svg class="mx-auto text-4xl text-primary-900 mb-4" style="width: 3em; height: 3em;" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"></path>
-                        </svg>
-                        <p class="text-primary-900 mb-2">"La lluvia de sobres, es la tradición de regalar dinero en efectivo en un sobre el día del evento"</p>                    
+                        <i class="fas fa-envelope text-6xl text-primary-600 mb-4"></i>
+                        <p class="text-primary-900 mb-6">"La lluvia de sobres, es la tradición de regalar dinero en efectivo en un sobre el día del evento"</p>
+                        
                         <div class="border-b-2 border-primary-200 mb-6"></div>
+                        
+                      
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -723,13 +707,6 @@
 
     <!-- Footer -->
 <footer class="bg-primary-900 py-8">
-    <div class="container mx-auto px-4 text-center">
-        <div class="flex justify-center items-center gap-6 mb-4">
-            <a href="https://wa.link/9m41oj" target="_blank" class="text-3xl text-primary-100 hover:text-primary-500 transition-colors">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://www.https://www.facebook.com/SMARTZONE.GT1" target="_blank" class="text-3xl text-primary-100 hover:text-primary-500 transition-colors">
-                <i class="fab fa-facebook"></i>
             </a>
             <a href="https://https://www.instagram.com/smart.zonegt/" target="_blank" class="text-3xl text-primary-100 hover:text-primary-500 transition-colors">
                 <i class="fab fa-instagram"></i>
@@ -793,26 +770,6 @@
                     });
                 }
             });
-
-            // Animación táctil para la imagen de fondo en móviles
-            const parallaxBg = document.querySelector('.parallax-bg-mobile');
-            if (parallaxBg) {
-                let startY = 0;
-                parallaxBg.addEventListener('touchstart', function(e) {
-                    if (e.touches.length === 1) {
-                        startY = e.touches[0].clientY;
-                    }
-                });
-                parallaxBg.addEventListener('touchmove', function(e) {
-                    if (e.touches.length === 1) {
-                        const deltaY = e.touches[0].clientY - startY;
-                        parallaxBg.style.backgroundPosition = `center ${deltaY * 0.5}px`;
-                    }
-                });
-                parallaxBg.addEventListener('touchend', function() {
-                    parallaxBg.style.backgroundPosition = 'center 0px';
-                });
-            }
 
             // ...resto de tu código de inicialización...
             // (No borres el resto de tu código aquí)
@@ -889,7 +846,7 @@
 
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60)) / (1000 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             document.getElementById('days').textContent = days.toString().padStart(2, '0');
@@ -991,6 +948,21 @@
 
             showSlide(currentIndex);
         });
+
+        // Permitir autoplay en móviles tras el primer toque
+        function enableAudioOnFirstTouch() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    audioIcon.className = 'fas fa-volume-up';
+                }).catch(() => {});
+            }
+            // Solo una vez
+            window.removeEventListener('touchstart', enableAudioOnFirstTouch);
+            window.removeEventListener('click', enableAudioOnFirstTouch);
+        }
+        window.addEventListener('touchstart', enableAudioOnFirstTouch, {passive:true});
+        window.addEventListener('click', enableAudioOnFirstTouch, {passive:true});
 
         // Handle escape key to close menu
         document.addEventListener('keydown', function(e) {
